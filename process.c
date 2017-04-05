@@ -1,14 +1,9 @@
 #include "3140_concur.h"
 #include <stdlib.h>
 #include <fsl_device_registers.h>
+#include "shared_structs.h"
 
 
-struct process_state {
-			unsigned int *sp;
-			unsigned int *sp_original; //Original stack pointer
-			unsigned int size; //Size of stack as initialized
-			struct process_state *nextProcess;
-}; 
 
 struct process_state * current_process = NULL;
 //The queue will be created with process_create in begin_queue

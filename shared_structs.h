@@ -7,8 +7,11 @@
  * This structure holds the process structure information
  */
 struct process_state {
-	
-};
+			unsigned int *sp;
+			unsigned int *sp_original; //Original stack pointer
+			unsigned int size; //Size of stack as initialized
+			struct process_state *nextProcess;
+}; 
 
 /**
  * This defines the lock structure
