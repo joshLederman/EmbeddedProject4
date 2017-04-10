@@ -11,6 +11,12 @@ void l_init(lock_t* l) {
 }
 
 void l_lock(lock_t* l) {
+	if (l->lock == 0)
+		l->lock = 1;
+	else{
+		current_process->lock_pointer = l;
+		process_blocked();
+	}
 	//May need to start by turning off interrupts to ensure atomicity
 	//If the lock is free, take the lock
 	//If the lock is not free, call process_blocked 

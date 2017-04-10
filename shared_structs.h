@@ -10,7 +10,7 @@ struct process_state {
 			unsigned int *sp;
 			unsigned int *sp_original; //Original stack pointer
 			unsigned int size; //Size of stack as initialized
-			unsigned int *lock_pointer;
+			struct lock_state *lock_pointer;
 			struct process_state *nextProcess;
 }; 
 
