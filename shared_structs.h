@@ -24,8 +24,10 @@ typedef struct lock_state {
 /**
  * This defines the conditional variable structure
  */
+
+/*Not yet implemented cond
 typedef struct cond_var {
 
-} cond_t;
+} cond_t;*/
 
 #endif

@@ -40,5 +40,4 @@ int main(void){
   LEDGreen_On();
 
 	while(1);
-	return 0;	
 }

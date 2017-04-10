@@ -93,6 +93,24 @@ unsigned int * process_select (unsigned int *cursp) {
 		//Remove the top process from the queue and add to end
 		struct process_state * switched_process = remove();
 		append(switched_process);
+		//Ensure that the process is not blocked
+		while (1) {
+			if (current_process->lock_pointer == NULL)
+					break;
+			else {
+				if (current_process->lock_pointer->lock==1) {
+					//Move process to end of queue because lock is not yet open
+					struct process_state * switched_process = remove();
+					append(switched_process);
+					//Now testing next process
+				}
+				else {
+					//Lock is now open
+					current_process->lock_pointer=NULL; //No longer blocked
+					break;
+				}
+			}
+		}
 		//Returns the new process sp
 		return current_process->sp;
 	}
