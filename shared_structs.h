@@ -10,6 +10,7 @@ struct process_state {
 			unsigned int *sp;
 			unsigned int *sp_original; //Original stack pointer
 			unsigned int size; //Size of stack as initialized
+			unsigned int *lock_pointer;
 			struct process_state *nextProcess;
 }; 
 
@@ -17,7 +18,7 @@ struct process_state {
  * This defines the lock structure
  */
 typedef struct lock_state {
-	
+	unsigned int lock; //0 = unlocked, 1 = locked;
 } lock_t;
 
 /**
