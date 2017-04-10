@@ -33,4 +33,5 @@ void l_unlock(lock_t* l) {
 	//I think the former would work more efficiently, but the latter is simpler and less error-prone
 	//In the latter situation, we would keep looping through the queue and for each process check;
 	//if its blocked it will only run if the lock is free
+	l->lock = 0;
 	}
