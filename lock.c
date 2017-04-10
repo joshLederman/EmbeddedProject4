@@ -7,7 +7,7 @@
 //relating to locks
 
 void l_init(lock_t* l) {
-	//Allocates space for the struct representing the lock
+	l->lock=0;
 }
 
 void l_lock(lock_t* l) {
