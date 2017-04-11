@@ -46,6 +46,7 @@ int process_create (void (*f)(void), int n) {
 			processState->sp = sp;
 			processState->sp_original = sp;
 			processState->size=n;
+			processState->lock_pointer = NULL;
 			append(processState);
 			return 0;
 };
@@ -106,6 +107,7 @@ unsigned int * process_select (unsigned int *cursp) {
 				}
 				else {
 					//Lock is now open
+					current_process->lock_pointer->lock=1; //Acquire the lock
 					current_process->lock_pointer=NULL; //No longer blocked
 					break;
 				}
