@@ -11,11 +11,15 @@ void l_init(lock_t* l) {
 }
 
 void l_lock(lock_t* l) {
+	PIT->CHANNEL[0].TCTRL = 0x1; // disable interrupts
+	
 	if (l->lock == 0)
 		l->lock = 1;
 	else{
 		current_process->lock_pointer = l;
 		process_blocked();
+		
+	PIT->CHANNEL[0].TCTRL = 0x3; // enable interrupts
 	}
 	//May need to start by turning off interrupts to ensure atomicity
 	//If the lock is free, take the lock
