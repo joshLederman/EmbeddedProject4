@@ -13,6 +13,7 @@ void p1 (){
 	LEDBlue_On();
 	c_wait(&l, &c);
 	LEDBlue_Toggle();
+	delay();
 }
 
 void p2 () {
