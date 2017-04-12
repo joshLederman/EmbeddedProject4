@@ -11,6 +11,7 @@ struct process_state {
 			unsigned int *sp_original; //Original stack pointer
 			unsigned int size; //Size of stack as initialized
 			struct lock_state *lock_pointer;
+			struct cond_var *cond_pointer; //Condition it is waiting on
 			struct process_state *nextProcess;
 }; 
 
@@ -25,9 +26,9 @@ typedef struct lock_state {
  * This defines the conditional variable structure
  */
 
-/*Not yet implemented cond
-typedef struct cond_var {
 
-} cond_t;*/
+typedef struct cond_var {
+	unsigned int waiting; //0 - no process waiting, 1 - process is waiting
+} cond_t;
 
 #endif

@@ -85,17 +85,18 @@ unsigned int * process_select (unsigned int *cursp) {
 				return NULL;
 			//Ensure that the process is not blocked
 			while (1) {
-				if (current_process->lock_pointer == NULL)
+				if (current_process->lock_pointer == NULL && current_process->cond_pointer == NULL)
 						break;
 				else {
-					if (current_process->lock_pointer->lock==1) {
-						//Move process to end of queue because lock is not yet open
+					if ((current_process->lock_pointer != NULL && current_process->lock_pointer->lock==1) ||
+								current_process->cond_pointer != NULL) {
+						//Move process to end of queue because lock is not yet open or condition not yet signalled
 						struct process_state * switched_process = remove();
 						append(switched_process);
 						//Now testing next process
 					}
 					else {
-						//Lock is now open
+						//Lock is now open or condition has been signalled
 						current_process->lock_pointer->lock=1; //Acquire the lock
 						current_process->lock_pointer=NULL; //No longer blocked
 						break;
