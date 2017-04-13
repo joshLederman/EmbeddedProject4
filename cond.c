@@ -6,6 +6,7 @@
 //#include "lock.c"
 
 void c_init(lock_t* l, cond_t* c) {
+	//Initialize the condition
 	c->waiting=0;
 }
 
@@ -37,7 +38,7 @@ void c_signal(lock_t* l, cond_t* c) {
 		if (tmp->cond_pointer == c)
 			tmp->cond_pointer = NULL;
 	//Releases the lock
-	l_unlock(l);
+	l->lock=0;
 		
 	PIT->CHANNEL[0].TCTRL = 0x3;
 }
