@@ -7,16 +7,12 @@ lock_t l;
 lock_t a;
 void p1(void){
 	int i= 0;
-	while(i < 11){
+	while(i < 3){
 		/*NCS*/
 		delay();
 		i++;
 		/*CS*/
 		l_lock(&l);
-		LEDRed_Toggle();
-		delay();
-		LEDRed_Toggle();
-		delay();
 		LEDBlue_Toggle();
 		delay();
 		LEDBlue_Toggle();
@@ -26,10 +22,6 @@ void p1(void){
 		LEDBlue_Toggle();
 		delay();
 		LEDBlue_Toggle();
-		delay();
-		LEDRed_Toggle();
-		delay();
-		LEDRed_Toggle();
 		delay();
 		l_unlock(&a);
 		
@@ -38,7 +30,7 @@ void p1(void){
 
 void p2(void){
 	int i= 0;
-	while(i < 11){
+	while(i < 3){
 		/*NCS*/
 		delay();
 		i++;
@@ -50,9 +42,9 @@ void p2(void){
 		delay();
 		l_unlock(&a);
 		l_lock(&l);
-		LEDBlue_Toggle();
+		LEDRed_Toggle();
 		delay();
-		LEDBlue_Toggle();
+		LEDRed_Toggle();
 		delay();
 		l_unlock(&l);
 		
@@ -61,21 +53,21 @@ void p2(void){
 
 void p3(void){
 	int i= 0;
-	while(i < 11){
+	while(i < 3){
 		/*NCS*/
 		delay();
 		i++;
 		/*CS*/
 		l_lock(&a);
-		LEDBlue_Toggle();
+		LEDGreen_Toggle();
 		delay();
-		LEDBlue_Toggle();
+		LEDGreen_Toggle();
 		delay();
 		l_lock(&l);
 		l_unlock(&a);
-		LEDRed_Toggle();
+		LEDGreen_Toggle();
 		delay();
-		LEDRed_Toggle();
+		LEDGreen_Toggle();
 		delay();
 		l_unlock(&l);
 		
