@@ -60,6 +60,8 @@ void process_start (void) {
 	PIT_MCR = 1; //Enables standard timers
 	PIT->CHANNEL[0].LDVAL = 3000000;
 	
+	//PIT->CHANNEL[0].TCTRL = 0x3; // enable interrupts
+	
 	process_begin();
 }
 	
