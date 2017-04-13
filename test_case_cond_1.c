@@ -19,7 +19,8 @@ void p2 () {
 		LEDRed_Toggle();
 		delay();
 	}
-	c_signal(&l, &c);
+	if (c_waiting(&l,&c))
+		c_signal(&l, &c);
 }
 	
 int main (void){

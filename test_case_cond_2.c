@@ -12,7 +12,8 @@ void p1 (){
 	c_wait(&l, &c1);
 	LEDBlue_Toggle();
 	delay();
-	c_signal(&l,&c2);
+	if (c_waiting(&l,&c2))
+		c_signal(&l,&c2);
 }
 
 void p2 () {
@@ -21,7 +22,8 @@ void p2 () {
 		LEDRed_Toggle();
 		delay();
 	}
-	c_signal(&l, &c1);
+	if (c_waiting(&l,&c1))
+		c_signal(&l, &c1);
 	c_wait(&l, &c2);
 	for (int i = 0; i < 10; i++) {
 		LEDRed_Toggle();
