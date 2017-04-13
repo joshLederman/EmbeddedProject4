@@ -4,13 +4,15 @@
 #include "cond.h"
 
 lock_t l;
-cond_t c;
+cond_t c1;
+cond_t c2;
 
 void p1 (){	
 	LEDBlue_On();
-	c_wait(&l, &c);
+	c_wait(&l, &c1);
 	LEDBlue_Toggle();
 	delay();
+	c_signal(&l,&c2);
 }
 
 void p2 () {
@@ -19,14 +21,19 @@ void p2 () {
 		LEDRed_Toggle();
 		delay();
 	}
-	c_signal(&l, &c);
+	c_signal(&l, &c1);
+	c_wait(&l, &c2);
+	for (int i = 0; i < 10; i++) {
+		LEDRed_Toggle();
+		delay();
+	}
 }
 	
 int main (void){
     LED_Initialize();
 
 	l_init (&l);
-	c_init (&l,&c);
+	c_init (&l,&c1);
  
 	if (process_create (p1,20) < 0) {
 	 	return -1;
